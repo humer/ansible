@@ -1,0 +1,12 @@
+[control]
+node1.mshome.net
+
+[webserver]
+node1.mshome.net
+node2.mshome.net
+
+[database]
+node3.mshome.net
+
+[loadbalancer]
+node4.mshome.net
