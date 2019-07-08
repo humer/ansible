@@ -1,0 +1,28 @@
+---
+- name: install webserver requirements
+  apt: name={{item}} state=present update_cache=yes
+  with_items: 
+    - python-pip
+    - python-virtualenv
+    - python-mysqldb
+
+- name: check wsgi module enabled 
+  apache2_module: state=present name=wsgi 
+  notify: apache2 restart 
+
+- name: copy demo virtual site config 
+  copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0755
+  notify: apache2 restart 
+
+- name: copy website data 
+  copy: src=demo/app/ dest=/var/www/demo mode=0755
+  notify: apache2 restart 
+
+- name: setup python virtual environment 
+  pip: requirements=/var/www/demo/requirements.txt virtualenv=/var/www/demo/.venv 
+  notify: apache2 restart 
+
+- name: activate demo apache site 
+  file: src=/etc/apache2/sites-available/demo.conf dest=/etc/apache2/sites-enabled/demo.conf state=link
+  notify: apache2 restart 
+
