@@ -3,4 +3,7 @@
   become: true
   roles:
     - apache2
-    - demo_app
+    - role: demo_app
+      # demo_app takes the common variables from group_vars
+      db_username: "{{ db_user_name }}"
+      db_userpass: "{{ db_user_pass }}"

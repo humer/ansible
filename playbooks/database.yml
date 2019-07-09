@@ -2,4 +2,9 @@
 - hosts: database
   become: true
   roles: 
-   - {role: mysql, db_name: demo, db_user_name: demo, db_user_pass: demo, db_user_host: '%'}
+    - mysql
+    # takes the variables from group_vars 
+    #  db_name: "{{ db_name }}"
+    #  db_user_name: "{{ db_user_name }}"
+    #  db_user_pass: "{{ db_user_pass }}"
+    #  db_user_host: "{{ db_user_host }}"
