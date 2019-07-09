@@ -23,8 +23,10 @@
 - name: get active sites 
   shell: ls -1 /etc/nginx/sites-enabled/  
   register: active
-  changed_when: "active.stdout_lines != sites.keys()"  
+  changed_when: "active.stdout_lines != sites.keys()"
   tags: ['configure']
+
+- debug: var=db_user_pass
 
 - name: de-activate nginx sites
   file: path=/etc/nginx/sites-enabled/{{ item }} state=absent 
