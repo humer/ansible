@@ -4,10 +4,12 @@
   gather_facts: false
   tasks:
     - name: verify loadbalancer status 
-      command: service nginx status 
+      command: service nginx status
+      changed_when: false
 
     - name: verify nginx listens on port 80
       wait_for: port=80 timeout=1
+      #changed_when: false
   tags: ['debug']
 
 - hosts: database
@@ -15,7 +17,8 @@
   gather_facts: false
   tasks:
     - name: verify database status 
-      command: service mysql status 
+      command: service mysql status
+      changed_when: false
 
     - name: verify mysql listens on port 3306
       wait_for: port=3306 timeout=1
@@ -26,10 +29,11 @@
   gather_facts: false
   tasks:
     - name: verify web servers status 
-      command: service apache2 status 
+      command: service apache2 status
+      changed_when: false
 
     - name: verify apache listens on port 80
-      wait_for: port=80 timeout=1      
+      wait_for: port=80 timeout=1   
   tags: ['debug']
 
 - hosts: control
