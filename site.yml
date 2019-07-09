@@ -1,4 +1,12 @@
 ---
+- hosts: all
+  become: true
+  gather_facts: false 
+  tasks: 
+    - name: update apt cache
+      apt: update-cache=yes cache_valid_time=86400
+      tags: ['packages']
+
 - include: playbooks/control.yml
 - include: playbooks/database.yml
 - include: playbooks/webserver.yml
