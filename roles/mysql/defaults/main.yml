@@ -1,2 +1,5 @@
 ---
-# defaults file for mysql
+db_name: defaultdb
+db_user_name: defaultusername
+db_user_pass: someSecurePass123
+db_user_host: localhost

@@ -18,6 +18,10 @@
   copy: src=demo/app/ dest=/var/www/demo mode=0755
   notify: apache2 restart 
 
+- name: copy website config data 
+  template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
+  notify: apache2 restart 
+
 - name: setup python virtual environment 
   pip: requirements=/var/www/demo/requirements.txt virtualenv=/var/www/demo/.venv 
   notify: apache2 restart 
