@@ -1,24 +1,29 @@
 ---
 - name: install tools
-  apt: name={{item}} state=present update-cache=yes
+  apt: name={{item}} state=present
   with_items:
     - python-mysqldb
-
-- name: install mysql server 
-  apt: name=mysql-server state=present update-cache=yes
+    - mysql-server
+  tags: ['packages']
 
 - name: ensure mysql listens on all addresses
   lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind_address 
               line="bind_address = 0.0.0.0"
               #{{ ansible_eth0.ipv4.address }} as best practice
+              # requires gather_facts to be enabled (true)
   notify: restart mysql
+  tags: ['configure']
 
 - name: ensure mysql service started 
   service: name=mysql state=started enabled=yes
+  tags: ['service']
 
 - name: create database
   mysql_db: name={{ db_name }} state=present
+  tags: ['configure']
 
 - name: create user to access {{ db_name }} database
   mysql_user: user={{ db_user_name }} password={{ db_user_pass }} 
-              priv={{ db_name }}.*:ALL host='{{ db_user_host }}' state=present 
+              priv={{ db_name }}.*:ALL host='{{ db_user_host }}' state=present   
+  tags: ['configure']
+

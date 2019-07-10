@@ -1,6 +1,7 @@
 ---
 - hosts: database
   become: true
+  gather_facts: false
   roles: 
     - mysql
     # takes the variables from group_vars 

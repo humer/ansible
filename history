@@ -1,0 +1,79 @@
+  161  sudo apt install ansible
+  168  ansible 
+  169  ansible --list-all
+  170  ansible --list
+  171  ansible --list-host
+  172  ansible hosts 
+  173  ansible hosts -i /root/hosts
+  174  sudo ansible hosts -i /root/hosts
+  178  ansible -m ping all
+
+
+  249  ansible -m command "rm -rf /var/www/html/demo/app" webserver
+  250  ansible -b -m command "rm -rf /var/www/html/demo/app" webserver
+  251  ansible -m command "rm -rf /var/www/html/demo/app" webserver
+
+
+  258  ansible -m file -a "path=/var/www/html/demo/app state=absent" -b webserver
+
+  284  ansible -a "apt remove cri-tools -y" -b all
+
+
+  386  ansible-galaxy init control
+  387  ansible-galaxy init ngnix 
+  388  ansible-galaxy init apache2
+  389  ansible-galaxy init mysql
+  390  ansible-galaxy init demo_app
+  391  ansible -m setup database
+
+
+  392  cd ansible/
+  393  ansible -m setup database
+  394  ansible-playbook playbooks/database.yml 
+  396  ansible-playbook playbooks/database.yml 
+
+  397  cd ansible/
+  400  ansible-playbook playbooks/database.yml 
+
+  402  ansible-playbook playbooks/database.yml 
+  403  ansible-playbook playbooks/control.yml 
+  404  ansible-playbook playbooks/loadbalancer.yml 
+  405  ansible-playbook playbooks/webserver.yml 
+  406  ansible-playbook site.yml
+  407  ansible-playbook stack_status.yml 
+  413  ansible-playbook playbooks/database.yml 
+  421  ansible-playbook stack_status.yml 
+  428  time ansible-playbook site.yml 
+
+
+  431  time ansible-playbook stack_status.yml 
+  432  time ansible-playbook stack_restart.yml 
+
+
+
+  433  time ansible-playbook site.yml 
+  435  time ansible-playbook site.yml --limit node3.mshome.net
+  436  time ansible-playbook site.yml --tags "packages"
+  437  time ansible-playbook site.yml --list-tags
+  438  time ansible-playbook site.yml --tag packages
+  439  time ansible-playbook site.yml --skip-tag packages
+  444  time ansible-playbook stack_status.yml 
+
+
+  457  ansible-playbook playbooks/loadbalancer.yml --tag configure
+
+
+  460  ansible-playbook playbooks/loadbalancer.yml --tag configure
+  463  ansible -m shell -a "ls -1 /etc/nginx/sites-enabled/" loadbalancer
+  473  ansible-playbook playbooks/loadbalancer.yml --tag configure
+  474  ansible-playbook playbooks/loadbalancer.yml --step
+  476  ansible-playbook site.yml --list-task
+  478  ansible-playbook site.yml --start-at "show dictionary"
+  479  ansible-playbook site.yml --skip-tag packages 
+  485  ansible-playbook site.yml --syntax-check 
+  486  ansible-playbook site.yml --check 
+  487  ansible-playbook site.yml
+  488  ansible-playbook playbooks/loadbalancer.yml --step configure
+  489  ansible-playbook playbooks/loadbalancer.yml 
+  494  history | grep ansible 
+  495  history | grep ansible > history
